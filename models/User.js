@@ -86,13 +86,5 @@ class User {
     }
 };
 
-User.login({
-    username: "saepudin5",
-    password: "Agung-12345"
-})
-.then( res => {
-    console.log(res)
-});
-
 module.exports = User;
 
