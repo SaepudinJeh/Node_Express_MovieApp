@@ -18,7 +18,7 @@ const postLogin = (req,res,next) => {
             username: result.username
         }, secret);
 
-        res.json(token);
+        res.json({token});
 
     })
     .catch(err => {
