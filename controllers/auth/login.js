@@ -16,7 +16,9 @@ const postLogin = (req,res,next) => {
         const token = jwt.sign({
             _id: result._id,
             username: result.username
-        }, secret);
+        }, secret, {
+            expiresIn: '24h'
+        });
 
         res.json({token});
 
