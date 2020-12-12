@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
         next(createError(401));
     };
 
-    const token = req.get('Authorization').split(' ')[1];
+    const token = req.get('Authorization').split(" ")[1];
     const secret = readFileSync('./private.key');
 
     try {
