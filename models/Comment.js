@@ -19,7 +19,7 @@ class Comment {
         };
 
         return null;
-    }
+    };
 
     save() {
         return new Promise((resolve, reject) => {
@@ -33,6 +33,33 @@ class Comment {
             });
         });
     };
+
+    static edit(commentId, text) {
+        return new Promise((resolve, reject) => {
+            dbCon('comments', async (db) => {
+                try {
+                    await db.updateOne({_id:commentId}, { '$set': {text}, '$currentDate': {modifiedAt:true} });
+                    resolve()
+                } catch (err) {
+                    reject(err)
+                }
+            });
+        });
+    }
+
+    static delete(commentId) {
+        return new Promise((resolve, reject) => {
+            dbCon('comments', async (db) => {
+
+                try {
+                    await db.deleteOne({_id:commentId});
+                    resolve();
+                } catch (err) {
+                    reject(err);
+                }
+            })
+        })
+    }
 }
 
 module.exports = Comment;
